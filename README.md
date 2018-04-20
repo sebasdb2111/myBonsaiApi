@@ -10,12 +10,15 @@ En la raíz del proyecto podrás encontrar el archivo myBonsai.sql el cual deber
 COMPOSER
 --------
 Instalar dependencias ejecutando el siguiente comando
-composer update
++ composer update
+
+Te pedirá tus datos de configuración de la base de datos
 
 ARRANCAR PROYECTO
 -----------------
 Desde terminal, dirígete a la raíz del proyecto y ejecuta el siguiente comando
-php bin/console server:run
++ php bin/console server:run
+
 
 PETICIONES
 ----------
