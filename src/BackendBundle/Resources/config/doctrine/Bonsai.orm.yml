@@ -1,0 +1,44 @@
+BackendBundle\Entity\Bonsai:
+    type: entity
+    table: bonsai
+    id:
+        idbonsai:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idBonsai
+            generator:
+                strategy: IDENTITY
+    fields:
+        tipo:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        riego:
+            type: boolean
+            nullable: false
+        abono:
+            type: boolean
+            nullable: false
+        transplante:
+            type: boolean
+            nullable: false
+        pulverizar:
+            type: boolean
+            nullable: false
+        createdat:
+            type: datetime
+            nullable: false
+            column: createdAt
+        imgpredefinida:
+            type: string
+            nullable: true
+            length: 250
+            options:
+                fixed: false
+            column: imgPredefinida
+    lifecycleCallbacks: {  }

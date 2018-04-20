@@ -1,0 +1,40 @@
+BackendBundle\Entity\LogCuidados:
+    type: entity
+    table: log_cuidados
+    indexes:
+        fk_log_cuidados_user_bonsai1_idx:
+            columns:
+                - idUserBonsai
+    id:
+        idlogcuidados:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idLogCuidados
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdat:
+            type: datetime
+            nullable: false
+            column: createdAt
+        cuidado:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+    oneToOne:
+        iduserbonsai:
+            targetEntity: UserBonsai
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUserBonsai:
+                    referencedColumnName: idUserBonsai
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

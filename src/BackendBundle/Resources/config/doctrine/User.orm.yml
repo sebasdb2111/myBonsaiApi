@@ -1,0 +1,59 @@
+BackendBundle\Entity\User:
+    type: entity
+    table: user
+    id:
+        iduser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idUser
+            generator:
+                strategy: IDENTITY
+    fields:
+        username:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        nombre:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        apellidos:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        fechanacimiento:
+            type: datetime
+            nullable: true
+            column: fechaNacimiento
+        imguser:
+            type: string
+            nullable: true
+            length: 250
+            options:
+                fixed: false
+            column: imgUser
+        creacion:
+            type: datetime
+            nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,72 @@
+BackendBundle\Entity\UserBonsai:
+    type: entity
+    table: user_bonsai
+    indexes:
+        fk_user_has_bonsai_bonsai1_idx:
+            columns:
+                - idBonsai
+        fk_user_has_bonsai_user_idx:
+            columns:
+                - idUser
+    id:
+        iduserbonsai:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idUserBonsai
+            generator:
+                strategy: IDENTITY
+    fields:
+        alias:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        edad:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        fechaadquisicion:
+            type: datetime
+            nullable: true
+            column: fechaAdquisicion
+        descripcion:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        imgbonsai:
+            type: string
+            nullable: true
+            length: 250
+            options:
+                fixed: false
+            column: imgBonsai
+    oneToOne:
+        idbonsai:
+            targetEntity: Bonsai
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idBonsai:
+                    referencedColumnName: idBonsai
+            orphanRemoval: false
+        iduser:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUser:
+                    referencedColumnName: idUser
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

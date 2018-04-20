@@ -1,0 +1,14 @@
+logCuidados_list:
+    path: /{id}
+    defaults: { _controller: 'AppBundle:LogCuidados:logCuidados', id:null}
+    methods: POST
+
+logCuidados_new:
+    path: /new/{id}
+    defaults: { _controller: 'AppBundle:LogCuidados:new', id:null}
+    methods: POST
+
+logCuidados_remove:
+    path: /remove/{id}
+    defaults: { _controller: 'AppBundle:LogCuidados:remove', id:null}
+    methods: POST

@@ -1,0 +1,29 @@
+userBonsai_list:
+    path: /list
+    defaults: { _controller: 'AppBundle:UserBonsai:userBonsai'}
+    methods: POST
+
+userBonsai_new:
+    path: /new
+    defaults: { _controller: 'AppBundle:UserBonsai:new'}
+    methods: POST
+
+userBonsai_edit:
+    path: /edit/{id}
+    defaults: { _controller: 'AppBundle:UserBonsai:new', id:null}
+    methods: POST
+
+userBonsai_detail:
+    path: /detail/{id}
+    defaults: { _controller: 'AppBundle:UserBonsai:detail', id:null}
+    methods: POST
+
+userBonsai_search:
+    path: /search/{search}
+    defaults: { _controller: 'AppBundle:UserBonsai:search', search:null}
+    methods: POST
+
+userBonsai_remove:
+    path: /remove/{id}
+    defaults: { _controller: 'AppBundle:UserBonsai:remove', id:null}
+    methods: POST
