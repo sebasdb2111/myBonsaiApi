@@ -37,7 +37,7 @@ EDITAR USUARIO
 + json => {"nombre":"Sebastian","apellidos":"Diez","fechaNacimiento":"07-11-1987"}
 
 USER BONSAI
-+ localhost:8000/userBonsai/
++ localhost:8000/userBonsai/list
 + Authorization => token generado con la peticion de login
 
 NUEVO USER BONSAI
