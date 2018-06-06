@@ -58,6 +58,19 @@ class UserBonsaiController extends Controller {
         return $helpers->json($data);
     }
 
+    public function imgBonsai ($idBonsai) {
+        if ($idBonsai == 1)
+            $img = 'https://planetahuerto-6f4f.kxcdn.com/estaticos/imagenes/ficha/969/969_1_1400.jpg';
+        elseif ($idBonsai == 2)
+            $img = 'https://planetahuerto-6f4f.kxcdn.com/estaticos/imagenes/ficha/1163/1163_1_1400.jpg';
+        elseif ($idBonsai == 3)
+            $img = 'https://planetahuerto-6f4f.kxcdn.com/estaticos/imagenes/ficha/987/987_1_1400.jpg';
+        elseif ($idBonsai == 4)
+            $img = 'https://planetahuerto-6f4f.kxcdn.com/estaticos/imagenes/ficha/993/993_1_1400.jpg';
+
+        return $img;
+    }
+
     public function newAction(Request $request, $id = null)
     {
         list($helpers, $jwt_auth, $token, $authCheck) = $this->authorization($request);
@@ -87,7 +100,7 @@ class UserBonsaiController extends Controller {
                         'idbonsai' => $idBonsai
                     ));
 
-                    // Si tiene Id crea un registro nuevo, sino modifica el existent
+                    // Si tiene Id crea un registro nuevo, sino modifica el existente
                     if ($id == null) {
                         $userBonsai = new UserBonsai();
                         $userBonsai->setIduser($user);
@@ -96,7 +109,8 @@ class UserBonsaiController extends Controller {
                         $userBonsai->setEdad($edad);
                         $userBonsai->setFechaadquisicion(new \DateTime($fechaAdquisicion));
                         $userBonsai->setDescripcion($descripcion);
-                        $userBonsai->setImgbonsai($imgBonsai);
+                        $imagen = $this->imgBonsai($idBonsai);
+                        $userBonsai->setImgbonsai($imagen);
 
                         $em->persist($userBonsai);
                         $em->flush();
@@ -123,7 +137,8 @@ class UserBonsaiController extends Controller {
                             $userBonsai->setEdad($edad);
                             $userBonsai->setFechaadquisicion(new \DateTime($fechaAdquisicion));
                             $userBonsai->setDescripcion($descripcion);
-                            $userBonsai->setImgbonsai($imgBonsai);
+                            $imagen = $this->imgBonsai($idBonsai);
+                            $userBonsai->setImgbonsai($imagen);
 
                             $em->persist($userBonsai);
                             $em->flush();
