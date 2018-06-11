@@ -234,6 +234,16 @@ class UserBonsaiController extends Controller {
             ));
 
             if ($userBonsai && is_object($userBonsai) && $identity->sub == $userBonsai->getIduser()->getIduser()){
+                //Borrar objeto y registro de los logCuidados existentes
+                $remCuidados = $this->getDoctrine()->getManager();
+                $logCuidado = $remCuidados->getRepository('BackendBundle:LogCuidados')->findBy(array(
+                    'iduserbonsai' => $id
+                ));
+                foreach ($logCuidado as $cuidado){
+                    $remCuidados->remove($cuidado);
+                    $remCuidados->flush();
+                }
+
                 //Borrar objeto y registro de la tabla
                 $em->remove($userBonsai);
                 $em->flush();
