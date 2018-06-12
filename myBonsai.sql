@@ -40,7 +40,11 @@ CREATE TABLE `bonsai` (
 --
 -- Dumping data for table `bonsai`
 --
-
+LOCK TABLES `bonsai` WRITE;
+/*!40000 ALTER TABLE `bonsai` DISABLE KEYS */;
+INSERT INTO `bonsai` VALUES (1,'ficus',1,1,1,1,'0000-00-00 00:00:00',NULL),(2,'manzano',1,1,1,1,'0000-00-00 00:00:00',NULL)(3,'olmo',1,1,1,1,'0000-00-00 00:00:00',NULL),(4,'olivo',1,1,1,1,'0000-00-00 00:00:00',NULL),;
+/*!40000 ALTER TABLE `bonsai` ENABLE KEYS */;
+UNLOCK TABLES;
 --
 -- Table structure for table `log_cuidados`
 --
