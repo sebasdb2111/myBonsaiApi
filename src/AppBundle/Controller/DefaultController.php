@@ -22,53 +22,42 @@ class DefaultController extends Controller
     public function loginAction(Request $request)
     {
         $helpers = $this->get(Helpers::class);
-
-        //Recibir json por POST
         $json = $request->get('json', null);
 
-        //Array a devolver por defecto
-        $data = array(
-            'satus' => 'error',
-            'data' => 'Send Json via POST'
-        );
-
-        if ($json != NUll) {
-            //HACER LOGIN
-
-            //convertir Json a objeto
-            $params = json_decode($json);
-
-            $email = (isset($params->email))?$params->email:null;
-            $password = (isset($params->password))?$params->password:null;
-            $getHass = (isset($params->getHash))?$params->getHash:null;
-
-            $emailConstraint = new Assert\Email();
-            $emailConstraint->message = 'This email is not valid!';
-            $validate_email = $this->get('validator')->validate($email, $emailConstraint);
-
-            //Cifrar contraseña
-            $pwd = hash('SHA256',$password);
-
-            if ($email != null && count($validate_email) == 0 && $pwd != null) {
-                $jwt_auth = $this->get(JwtAuth::class);
-
-                if ($getHass == null || $getHass == false)
-                    $singup = $jwt_auth->singup($email, $pwd);
-                else
-                    $singup = $jwt_auth->singup($email, $pwd, true);
-
-                return $this->json($singup);
-            }
-            else {
-                $data = array(
-                    'satus' => 'error',
-                    'data' => 'Email incorrecto o contraseña incorrecto'
-                );
-            }
+        if ($json == NUll) {
+            $data = array(
+                'satus' => 'error',
+                'data' => 'Send Json via POST'
+            );
+            return $helpers->json($data);
         }
-        else {
 
+        $params = json_decode($json);
+
+        $email = (isset($params->email))?$params->email:null;
+        $password = (isset($params->password))?$params->password:null;
+        $getHass = (isset($params->getHash))?$params->getHash:null;
+
+        $emailConstraint = new Assert\Email();
+        $emailConstraint->message = 'This email is not valid!';
+        $validate_email = $this->get('validator')->validate($email, $emailConstraint);
+
+        $pwd = hash('SHA256',$password);
+
+        if ($email == null && count($validate_email) != 0 && $pwd == null) {
+            $data = array(
+                'satus' => 'error',
+                'data' => 'Email incorrecto o contraseña incorrecto'
+            );
+            return $helpers->json($data);
         }
-        return $helpers->json($data);
+
+        $jwt_auth = $this->get(JwtAuth::class);
+        if ($getHass == null || $getHass == false)
+            $singup = $jwt_auth->singup($email, $pwd);
+        else
+            $singup = $jwt_auth->singup($email, $pwd, true);
+
+        return $this->json($singup);
     }
 }
